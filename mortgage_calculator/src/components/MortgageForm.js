@@ -4,40 +4,45 @@ import Calculator from "./Calculator";
     const MortgageForm = ({onCalculateSubmit}) => {
 
         // states
-        const [yourSalary, setYourSalary] = useState("");
-        const [partnerSalary, setPartnerSalary] = useState("");
-        const [deposit, setDeposit] = useState("");
-        const [monthlyCommitments, setMonthlyCommitments] = useState("");
+        const [yourSalary, setYourSalary] = useState(0);
+        const [partnerSalary, setPartnerSalary] = useState(0);
+        const [deposit, setDeposit] = useState(0);
+        const [monthlyCommitments, setMonthlyCommitments] = useState(0);
 
         // handlechange functions
         const handleYourSalaryChange = (event) => {
-            setYourSalary(event.target.value);
+            setYourSalary(parseInt(event.target.value));
         }
 
         const handlePartnerSalaryChange = (event) => {
-            setPartnerSalary(event.target.value);
+            setPartnerSalary(parseInt(event.target.value));
         }
 
-        const handleDespoitChange = (event) => {
-            setDeposit(event.target.value);
+        const handleDepositChange = (event) => {
+            setDeposit(parseInt(event.target.value));
         }
 
         const handleMonthlyCommitmentsChange = (event) => {
-            setMonthlyCommitments(event.target.value);
+            setMonthlyCommitments(parseInt(event.target.value));
         }
 
         const handleFormSubmit = (event) => {
             event.preventDefault();
+
+            onCalculateSubmit({
+                yourSalary: yourSalary,
+                partnerSalary: partnerSalary,
+                monthlyCommitments: monthlyCommitments,
+                deposit: deposit
+            })
         }
-
-
 
 
         
         return(
             <div>
                 <p>I am MortgageForm</p>
-                <form>
+                <form onSubmit={handleFormSubmit}>
                     <div>
                         <label for="your-salary">Your salary</label>
                         <input type="number" id="your-salary" onChange={handleYourSalaryChange}/>
@@ -48,7 +53,7 @@ import Calculator from "./Calculator";
                     </div>
                     <div>
                         <label for="deposit">Deposit amount</label>
-                        <input type="number" id="deposit" onChange={handleDespoitChange}/>
+                        <input type="number" id="deposit" onChange={handleDepositChange}/>
                     </div>
                     <div>
                         <label for="commitments">Monthly commitments</label>
@@ -61,7 +66,7 @@ import Calculator from "./Calculator";
                 </form>
 
 
-                <Calculator />
+                
             </div>
 
         )

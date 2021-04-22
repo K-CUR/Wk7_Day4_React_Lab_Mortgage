@@ -1,9 +1,9 @@
 import React from "react";
 
-    const Calculator = () => {
+    const Calculator = ({maximumBudget}) => {
         return(
             <div>
-                <p>I am Calculator</p>
+                <p>Maximum Budget value: {maximumBudget}</p>
             </div>
         )
 
